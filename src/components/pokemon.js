@@ -1,68 +1,66 @@
-import React from 'react';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
+import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Pokeinfo from "./Pokeinfo";
+import Streak from "./Streak";
 
 function Pokemon(props) {
-    useEffect(() => {
-        getPokemon();
-        
-      }, []);
+  useEffect(() => {
+    getPokemon();
+  }, []);
+  const [pokemon, setPokemon] = useState("");
+  const [pokemonData, setPokemonData] = useState([]);
+  const [guess, setGuess] = useState("");
+  const [count, setCount] = useState(0);
+  let num = Math.floor(Math.random() * (902  - 1+1)+1);
+  
 
-      const [pokemonData, setPokemonData] = useState([]);
-      const [guess, setGuess] =useState("")
-      let num= Math.floor(Math.random() * (898 -  + 0)) ;
+  const handleGuess = (e) => {
+    setGuess(e.target.value);
+  };
+
+  const submitGuess = (e) => {
     
-    
-      const handleGuess = (e) => {
-        setGuess(e.target.value);
-       
-      };
-    
-      const submitGuess = (e)=>{
-        
-        e.preventDefault();
-        if(guess.toLowerCase().replace("-", " ") == pokemonData[0].name){ alert("correct")}
-          else {
-            alert("try again");
-          }
-          getPokemon()
-          
-         setGuess("")
-          
-      }
+    e.preventDefault();
+    if (guess.toLowerCase() == pokemon.replace("-", " ")) {
+      alert("correct");
+      setCount(count + 1)
       
-    
-    
-      const getPokemon = async () => {
-        const toArray = [];
-        try {
-          const url = `https://pokeapi.co/api/v2/pokemon/${num}`;
-          const res = await axios.get(url);
-          await toArray.push(res.data);
-          await setPokemonData(toArray);
-           console.log(toArray[0].name)
-          
-           
-        } catch (e) {
-          console.log(e); 
-        }
-      };
-    
-    return (
-        <div>
-                  {pokemonData.map((data) => {
-        return (
-          <div  key={data.id} className="container">
-            <img src={data.sprites["front_default"]} />
-          </div>
-        );
-      })}
+    } else {
+      alert("try again");
+      setCount(0);
+    }
+    getPokemon();
+
+    setGuess("");
+  };
+
+  const getPokemon = async () => {
+ 
+    const toArray = [];
+    try {
+      const url = `https://pokeapi.co/api/v2/pokemon/${num}`;
+      const res = await axios.get(url);
+      await toArray.push(res.data);
+      setPokemonData(toArray);
+      setPokemon(toArray[0].name);
+      console.log(toArray[0].name);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <div>
+     
+      <Pokeinfo info={pokemonData} />
+      <Streak value={count}/>
       <form onSubmit={submitGuess}>
-      <input value={guess} onChange={handleGuess}></input>
-      </form> 
-        </div>
-    );
+        <input value={guess} onChange={handleGuess}></input>
+        <button type="submit">Guess</button>
+      </form>
+    </div>
+  );
 }
 
 export default Pokemon;
