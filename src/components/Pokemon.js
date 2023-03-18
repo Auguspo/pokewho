@@ -5,7 +5,7 @@ import Streak from "./Streak";
 import "../App.css"
 import { useNavigate } from 'react-router-dom';
 
-function Pokemon({ min, max }) {
+const Pokemon=({ min, max }) => {
   useEffect(() => {
     getPokemon();
   }, []);
@@ -30,7 +30,7 @@ function Pokemon({ min, max }) {
       alert("Prueba de nuevo");
       setCount(0);
     }
-    getPokemon();
+    
 
     setGuess("");
   };
