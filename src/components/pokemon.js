@@ -3,8 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Pokeinfo from "./Pokeinfo";
 import Streak from "./Streak";
+import "../App.css"
 
-function Pokemon({min, max}) {
+function Pokemon({ min, max }) {
   useEffect(() => {
     getPokemon();
   }, []);
@@ -12,23 +13,19 @@ function Pokemon({min, max}) {
   const [pokemonData, setPokemonData] = useState([]);
   const [guess, setGuess] = useState("");
   const [count, setCount] = useState(0);
-  let num = Math.floor(Math.random() * (max  - min+1)+min);
- 
-  
+  let num = Math.floor(Math.random() * (max - min + 1)) + min;
 
   const handleGuess = (e) => {
     setGuess(e.target.value);
   };
 
   const submitGuess = (e) => {
-    
     e.preventDefault();
     if (guess.toLowerCase() == pokemon.replace("-", " ")) {
-      alert("Correcto")
-      setCount(count + 1)
-      
+      alert("Correcto");
+      setCount(count + 1);
     } else {
-      alert("Prueba de nuevo")
+      alert("Prueba de nuevo");
       setCount(0);
     }
     getPokemon();
@@ -37,7 +34,6 @@ function Pokemon({min, max}) {
   };
 
   const getPokemon = async () => {
- 
     const toArray = [];
     try {
       const url = `https://pokeapi.co/api/v2/pokemon/${num}`;
@@ -49,15 +45,14 @@ function Pokemon({min, max}) {
     } catch (e) {
       console.log(e);
     }
-
-     };
+  };
 
   return (
-    <div>
+    <div className='App'>
      
       <Pokeinfo info={pokemonData} />
-      <Streak value={count}/>
-          
+      <Streak value={count} />
+
       <form onSubmit={submitGuess}>
         <input value={guess} onChange={handleGuess}></input>
         <button type="submit">Guess</button>

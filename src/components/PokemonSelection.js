@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function PokemonSelection() {
   return (
     <div>
-      <h1>Selecciona el pool de elección de Pokémon:</h1>
+      <h1>Selecciona La Generación Pokémon:</h1>
       <ul>
         <li><Link to="/gen1">Primera Generación</Link></li>
         <li><Link to="/gen2">Segunda Generación</Link></li>

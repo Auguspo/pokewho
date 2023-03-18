@@ -1,9 +1,10 @@
 import React from 'react';
 
 
+
 const Pokeinfo = ({info}) => {
 
-    return (<div>
+    return (<div >
         {info.map((data) => {
             return (
               <div  key={data.id} className="container">
