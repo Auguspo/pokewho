@@ -8,7 +8,7 @@ const Pokeinfo = ({info}) => {
         {info.map((data) => {
             return (
               <div  key={data.id} className="container">
-                <img src={data.sprites["front_default"]} />
+                <img src={data.sprites["front_default"]}  alt={data.name}/>
               </div>
             );
           })}

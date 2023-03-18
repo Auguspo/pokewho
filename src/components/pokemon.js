@@ -1,6 +1,5 @@
-import React from "react";
+import React,{ useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import Pokeinfo from "./Pokeinfo";
 import Streak from "./Streak";
 import "../App.css"
@@ -10,6 +9,7 @@ function Pokemon({ min, max }) {
   useEffect(() => {
     getPokemon();
   }, []);
+
   const [pokemon, setPokemon] = useState("");
   const [pokemonData, setPokemonData] = useState([]);
   const [guess, setGuess] = useState("");
@@ -23,7 +23,7 @@ function Pokemon({ min, max }) {
 
   const submitGuess = (e) => {
     e.preventDefault();
-    if (guess.toLowerCase() == pokemon.replace("-", " ")) {
+    if (guess.toLowerCase() === pokemon.replace("-", " ")) {
       alert("Correcto");
       setCount(count + 1);
     } else {
