@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Pokeinfo from "./Pokeinfo";
 import Streak from "./Streak";
 import "../App.css"
+import { useNavigate } from 'react-router-dom';
 
 function Pokemon({ min, max }) {
   useEffect(() => {
@@ -13,6 +14,7 @@ function Pokemon({ min, max }) {
   const [pokemonData, setPokemonData] = useState([]);
   const [guess, setGuess] = useState("");
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
   let num = Math.floor(Math.random() * (max - min + 1)) + min;
 
   const handleGuess = (e) => {
@@ -57,6 +59,9 @@ function Pokemon({ min, max }) {
         <input value={guess} onChange={handleGuess}></input>
         <button type="submit">Guess</button>
       </form>
+      <button onClick={() => {
+		navigate('/', {replace: true});
+	}}>Cambiar Generación</button>	
     </div>
   );
 }
