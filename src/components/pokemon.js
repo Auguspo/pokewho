@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Pokeinfo from "./Pokeinfo";
 import Streak from "./Streak";
 
-function Pokemon(props) {
+function Pokemon({min, max}) {
   useEffect(() => {
     getPokemon();
   }, []);
@@ -12,7 +12,8 @@ function Pokemon(props) {
   const [pokemonData, setPokemonData] = useState([]);
   const [guess, setGuess] = useState("");
   const [count, setCount] = useState(0);
-  let num = Math.floor(Math.random() * (902  - 1+1)+1);
+  let num = Math.floor(Math.random() * (max  - min+1)+min);
+ 
   
 
   const handleGuess = (e) => {
@@ -23,11 +24,11 @@ function Pokemon(props) {
     
     e.preventDefault();
     if (guess.toLowerCase() == pokemon.replace("-", " ")) {
-      alert("correct");
+      alert("Correcto")
       setCount(count + 1)
       
     } else {
-      alert("try again");
+      alert("Prueba de nuevo")
       setCount(0);
     }
     getPokemon();
@@ -48,13 +49,15 @@ function Pokemon(props) {
     } catch (e) {
       console.log(e);
     }
-  };
+
+     };
 
   return (
     <div>
      
       <Pokeinfo info={pokemonData} />
       <Streak value={count}/>
+          
       <form onSubmit={submitGuess}>
         <input value={guess} onChange={handleGuess}></input>
         <button type="submit">Guess</button>
