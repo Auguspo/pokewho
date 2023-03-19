@@ -9,3 +9,10 @@ height: auto;
 
 }
 
+.img-dark{
+  filter:brightness(0)
+}
+
+.img-light{
+  filter:brightness(1)
+}
