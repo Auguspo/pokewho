@@ -6,19 +6,17 @@ import "../App.css";
 import { useNavigate } from "react-router-dom";
 
 function Pokemon({ min, max }) {
-  
+
   useEffect(() => {
     getPokemon();
   }, []);
 
   const [pokemon, setPokemon] = useState("");
-  const [pokemonData, setPokemonData] = useState([]);
   const [guess, setGuess] = useState("");
   const [count, setCount] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
-  let num = Math.floor(Math.random() * (max - min + 1)) + min;
-
+  const [pokemonID, setPokemonID] = useState(Math.floor(Math.random() * (max - min + 1)) + min)  
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
@@ -27,7 +25,7 @@ function Pokemon({ min, max }) {
     setGuess(e.target.value);
   };
 
-  const submitGuess = (e) => {
+  const submitGuess = async (e) => {
     e.preventDefault();
     setIsActive(true);
     if (guess.toLowerCase() === pokemon.replace("-", " ")) {
@@ -38,7 +36,8 @@ function Pokemon({ min, max }) {
       alert("Prueba de nuevo");
       setCount(0);
     }
-
+    await timeout(1000);
+    setPokemonID(Math.floor(Math.random() * (max - min + 1)) + min)
     getPokemon();
 
     setGuess("");
@@ -46,12 +45,11 @@ function Pokemon({ min, max }) {
 
   const getPokemon = async () => {
     const toArray = [];
-    await timeout(1000);
+   
     try {
-      const url = `https://pokeapi.co/api/v2/pokemon/${num}`;
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}`;
       const res = await axios.get(url);
       await toArray.push(res.data);
-      setPokemonData(toArray);
       setPokemon(toArray[0].name);
       console.log(toArray[0].name);
     } catch (e) {
@@ -62,7 +60,7 @@ function Pokemon({ min, max }) {
 
   return (
     <div className="App">
-      <Pokeinfo info={pokemonData} active={isActive} />
+      <Pokeinfo ID={pokemonID} name={pokemon} active={isActive} />
 
       <Streak value={count} />
 
