@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import PokemonSelection from "./components/PokemonSelection";
 import Pokemon from "./components/Pokemon";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/gen8" element={<Pokemon min={810} max={905} />} />
         </Routes>
       </Router>
+      <Footer />
     </div>
   );
 }
