@@ -4,22 +4,67 @@ import Pokeinfo from "./Pokeinfo";
 import Streak from "./Streak";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
+import Hint from "./Hint";
 
 function Pokemon({ min, max }) {
+  const [pokemon, setPokemon] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    getPokemon();
-  }, []);
 
-  const [pokemon, setPokemon] = useState("");
+    const fetchPokemon = async () => {
+      const response = await axios.get(
+        "https://pokeapi.co/api/v2/pokemon?limit=905"
+      );
+      const randomPokemonUrl =
+        response.data.results[
+          Math.floor(Math.floor(Math.random() * (max - min + 1)) + min)
+        ].url;
+
+      const pokemonResponse = await axios.get(randomPokemonUrl);
+      const pokemon = {
+        name: pokemonResponse.data.name,
+        image: pokemonResponse.data.sprites.front_default,
+        ID: pokemonResponse.data.ID,
+      };
+      await setPokemon(pokemon);
+      console.log(pokemon.name);
+      await setLoaded(true);
+    };
+
+    if (!loaded) {
+      fetchPokemon();
+    }
+  }, [loaded]);
+
   const [guess, setGuess] = useState("");
   const [count, setCount] = useState(0);
+  const [show, setShow] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
-  const [pokemonID, setPokemonID] = useState(Math.floor(Math.random() * (max - min + 1)) + min)  
+
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
+
+  const handlePokemon = async () => {
+    const response = await axios.get(
+      "https://pokeapi.co/api/v2/pokemon?limit=905"
+    );
+    const randomPokemonUrl =
+      response.data.results[
+        Math.floor(Math.floor(Math.random() * (max - min + 1)) + min)
+      ].url;
+    const pokemonResponse = await axios.get(randomPokemonUrl);
+    const pokemon = {
+      name: pokemonResponse.data.name,
+      image: pokemonResponse.data.sprites.front_default,
+      ID: pokemonResponse.data.ID,
+    };
+    setIsActive(false);
+    console.log(pokemon.name);
+    setPokemon(pokemon);
+  };
 
   const handleGuess = (e) => {
     setGuess(e.target.value);
@@ -27,42 +72,45 @@ function Pokemon({ min, max }) {
 
   const submitGuess = async (e) => {
     e.preventDefault();
-    setIsActive(true);
-    if (guess.toLowerCase() === pokemon.replace("-", " ")) {
+    await setIsActive(true);
+    if (guess.toLowerCase() === pokemon.name.replace("-", " ")) {
       alert("Correcto");
 
       setCount(count + 1);
     } else {
       alert("Prueba de nuevo");
+
       setCount(0);
     }
-    await timeout(1000);
-    setPokemonID(Math.floor(Math.random() * (max - min + 1)) + min)
-    getPokemon();
-
+    setShow(0);
+    await timeout(2000);
     setGuess("");
+    setCount(0);
+
+    handlePokemon();
   };
 
-  const getPokemon = async () => {
-    const toArray = [];
-   
-    try {
-      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}`;
-      const res = await axios.get(url);
-      await toArray.push(res.data);
-      setPokemon(toArray[0].name);
-      console.log(toArray[0].name);
-    } catch (e) {
-      console.log(e);
+  const hintCount = (count) => {
+    if (count === 0) {
+      setShow(1);
     }
-    setIsActive(false);
+
+    if (count === 1) {
+      setShow(2);
+    }
   };
-
   return (
-    <div className="App">
-      <Pokeinfo ID={pokemonID} name={pokemon} active={isActive} />
-
-      <Streak value={count} />
+    <div className="App"><div className="bg">
+      <Pokeinfo className="img" pokemon={pokemon} active={isActive} />
+      <Hint pokemon={pokemon} showH={show} />
+      <button
+        onClick={() => {
+          hintCount(show);
+        }}
+      >
+        Hint
+      </button>
+      <Streak value={count} count={show} />
 
       <form onSubmit={submitGuess}>
         <input value={guess} onChange={handleGuess}></input>
@@ -75,7 +123,7 @@ function Pokemon({ min, max }) {
       >
         Cambiar Generación
       </button>
-    </div>
+    </div></div>
   );
 }
 

@@ -1,18 +1,17 @@
 html{
-  background: url("./assets/bg.jpg")  no-repeat center center fixed; ;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size:100%;
+  background-color: rgb(228, 0, 15);
 }
 .App {
   text-align: center;
   width: 100%;
+ 
+
 }
 
 img {
-  width: 30%;
+  width: 315px;
   height: auto;
+  margin-right:10%;
 }
 
 .img-dark {
@@ -22,3 +21,8 @@ img {
 .img-light {
   filter: brightness(1);
 }
+
+.bg{ background: url("./assets/no_bg.png") no-repeat center center;   -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; 
+   background-size:20%;}
