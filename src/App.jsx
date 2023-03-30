@@ -4,11 +4,14 @@ import "./App.css";
 import PokemonSelection from "./components/PokemonSelection";
 import Pokemon from "./components/Pokemon";
 import Footer from "./components/Footer";
+import CheckList from "./components/CheckList";
 
 function App() {
   return (
     <div className="App">
       <h1>PokeWho</h1>
+
+      <CheckList></CheckList>
       <Router>
         <Routes>
           <Route exact path="/" element={<PokemonSelection />} />

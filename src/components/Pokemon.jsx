@@ -6,7 +6,7 @@ import "../App.css";
 import { useNavigate } from "react-router-dom";
 import Hint from "./Hint";
 
-function Pokemon({ min, max }) {
+function Pokemon({ min, max }, gen) {
   const [pokemon, setPokemon] = useState("");
   const [loaded, setLoaded] = useState(false);
 

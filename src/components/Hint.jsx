@@ -2,6 +2,8 @@ import React from 'react';
 
 const Hint = ({pokemon,showH}) => {
 
+//Se modifica el estado?
+
     return (
         <div>
 
