@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useLocation, useNavigate } from "react";
 import axios from "axios";
 import Pokeinfo from "./Pokeinfo";
 import Streak from "./Streak";
 import "../App.css";
-import { useNavigate } from "react-router-dom";
 import Hint from "./Hint";
-import { useLocation } from "react-router-dom";
+
 
 function Pokemon({ min, max }) {
   const [pokemon, setPokemon] = useState("");
