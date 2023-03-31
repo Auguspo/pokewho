@@ -1,8 +1,9 @@
-import React, { useEffect, useState,useLocation, useNavigate } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Pokeinfo from "./Pokeinfo";
 import Streak from "./Streak";
 import "../App.css";
+import { useNavigate, useLocation } from "react-router-dom";
 import Hint from "./Hint";
 
 
