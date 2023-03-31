@@ -5,21 +5,40 @@ import Streak from "./Streak";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import Hint from "./Hint";
+import { useLocation } from "react-router-dom";
 
-function Pokemon({ min, max }, gen) {
+function Pokemon({ min, max }) {
   const [pokemon, setPokemon] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [guess, setGuess] = useState("");
+  const [count, setCount] = useState(0);
+  const [show, setShow] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate();
+  const range = useLocation();
+  const gens = range.state;
+
+  const generateRandomNumberInRange = ({ gens }) => {
+    const results = [];
+
+    gens.forEach((r) => {
+      const [min, max] = r;
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      results.push(randomNumber);
+    });
+
+    const randomIndex = Math.floor(Math.random() * results.length);
+    console.log(results[randomIndex]);
+    return results[randomIndex];
+  };
 
   useEffect(() => {
-
     const fetchPokemon = async () => {
       const response = await axios.get(
         "https://pokeapi.co/api/v2/pokemon?limit=905"
       );
       const randomPokemonUrl =
-        response.data.results[
-          Math.floor(Math.floor(Math.random() * (max - min + 1)) + min)
-        ].url;
+        response.data.results[generateRandomNumberInRange(gens)].url;
 
       const pokemonResponse = await axios.get(randomPokemonUrl);
       const pokemon = {
@@ -37,12 +56,6 @@ function Pokemon({ min, max }, gen) {
     }
   }, [loaded]);
 
-  const [guess, setGuess] = useState("");
-  const [count, setCount] = useState(0);
-  const [show, setShow] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const navigate = useNavigate();
-
   function timeout(delay) {
     return new Promise((res) => setTimeout(res, delay));
   }
@@ -52,9 +65,7 @@ function Pokemon({ min, max }, gen) {
       "https://pokeapi.co/api/v2/pokemon?limit=905"
     );
     const randomPokemonUrl =
-      response.data.results[
-        Math.floor(Math.floor(Math.random() * (max - min + 1)) + min)
-      ].url;
+      response.data.results[generateRandomNumberInRange(gens)].url;
     const pokemonResponse = await axios.get(randomPokemonUrl);
     const pokemon = {
       name: pokemonResponse.data.name,
@@ -98,9 +109,12 @@ function Pokemon({ min, max }, gen) {
     if (count === 1) {
       setShow(2);
     }
+    console.log(generateRandomNumberInRange(gens));
+    console.log(gens);
   };
+
   return (
-    <div className="App"><div className="bg">
+    <div className="bg">
       <Pokeinfo className="img" pokemon={pokemon} active={isActive} />
       <Hint pokemon={pokemon} showH={show} />
       <button
@@ -123,7 +137,7 @@ function Pokemon({ min, max }, gen) {
       >
         Cambiar Generación
       </button>
-    </div></div>
+    </div>
   );
 }
 

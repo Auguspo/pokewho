@@ -1,17 +1,22 @@
 import React, { useState, useMemo } from "react";
-import Pokemon from "./Pokemon";
+import PokemonSelection from "./PokemonSelection";
 const CheckList = () => {
   const [generations, setGenerations] = useState([
-    { id: 1, name: "Generation I", isChecked: false,range:[0,150] },
-    { id: 2, name: "Generation II", isChecked: false,range:[151,251] },
-    { id: 3, name: "Generation III", isChecked: false,range:[252,386] },
-    { id: 4, name: "Generation IV", isChecked: false,range:[387,493] },
-    { id: 5, name: "Generation V", isChecked: false,range:[494,649] },
-    { id: 6, name: "Generation VI", isChecked: false,range:[650,721] },
-    { id: 7, name: "Generation VII", isChecked: false,range:[722,809] },
-    { id: 8, name: "Generation VIII", isChecked: false,range:[810,905] },
+    { id: 1, name: "Generation I", isChecked: false, range: [0, 150] },
+    { id: 2, name: "Generation II", isChecked: false, range: [151, 251] },
+    { id: 3, name: "Generation III", isChecked: false, range: [252, 386] },
+    { id: 4, name: "Generation IV", isChecked: false, range: [387, 493] },
+    { id: 5, name: "Generation V", isChecked: false, range: [494, 649] },
+    { id: 6, name: "Generation VI", isChecked: false, range: [650, 721] },
+    { id: 7, name: "Generation VII", isChecked: false, range: [722, 809] },
+    { id: 8, name: "Generation VIII", isChecked: false, range: [810, 905] },
     { id: 9, name: "Select All", isChecked: false },
   ]);
+
+  const [range, setRange] =useState()
+  
+
+
 
   const handleCheck = (event, id) => {
     const newGenerations = generations.map((generation) => {
@@ -23,15 +28,16 @@ const CheckList = () => {
       }
       return generation;
     });
-    
-    if(newGenerations.filter((generation) => generation.isChecked).length === 8){
 
-     newGenerations.filter(
-      (generation) => generation.isChecked === true
-    ).length ===
-    generations.length 
+    if (
+      newGenerations.filter((generation) => generation.isChecked).length === 8
+    ) {
+      newGenerations.filter((generation) => generation.isChecked === true)
+        .length === generations.length;
     }
-    setGenerations(newGenerations);
+     setGenerations(newGenerations);
+   
+
   };
 
   const handleSelectAll = (event) => {
@@ -42,6 +48,7 @@ const CheckList = () => {
       };
     });
     setGenerations(newGenerations);
+  
   };
 
   const handleFormSubmit = (event) => {
@@ -53,11 +60,15 @@ const CheckList = () => {
       }
     });
     console.log(selectedGenerations);
+     
+
+    setRange(selectedGenerations);
   };
 
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
+        <h1>Selecciona La Generación Pokémon:</h1>
+      <form onChange={handleFormSubmit}>
         {generations.map((generation) => {
           return (
             <div key={generation.id}>
@@ -79,8 +90,7 @@ const CheckList = () => {
                     checked={
                       generations.filter(
                         (generation) => generation.isChecked === true
-                      ).length ===
-                      generations.length 
+                      ).length === generations.length
                     }
                     onChange={handleSelectAll}
                   />{" "}
@@ -91,14 +101,13 @@ const CheckList = () => {
           );
         })}
         <div></div>
-        <button type="submit">Submit</button>
+
+        <PokemonSelection type="submit" gens={range}></PokemonSelection>
       </form>
-  
+
+
     </div>
-
-  
   );
-
 };
 
 export default CheckList;

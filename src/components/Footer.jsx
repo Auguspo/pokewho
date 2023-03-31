@@ -10,6 +10,7 @@ function Footer() {
         bottom: 0,
         width: "100%",
         padding: "10px",
+        left: "0px",
       }}
     >
       <div style={{ textAlign: "center" }}>
@@ -20,6 +21,7 @@ function Footer() {
           textAlign: "right",
           marginRight: "10%",
           paddingBottom: "10px",
+          
         }}
       >
         <a href="https://github.com/Auguspo" style={{ color: "white" }}>
