@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Hint from "./Hint";
 
 
-function Pokemon({ min, max }) {
+function Pokemon() {
   const [pokemon, setPokemon] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [guess, setGuess] = useState("");
@@ -113,28 +113,26 @@ function Pokemon({ min, max }) {
   };
 
   return (
-    <div className="bg">
+    <div className="bg">      <Streak value={count} count={show} />
       <Pokeinfo className="img" pokemon={pokemon} active={isActive} />
-      <Hint pokemon={pokemon} showH={show} />
-      <button
-        onClick={() => {
-          hintCount(show);
-        }}
-      >
-        Hint
-      </button>
-      <Streak value={count} count={show} />
-
+      <Hint  pokemon={pokemon} showH={show} />
+    
       <form onSubmit={submitGuess}>
         <input value={guess} onChange={handleGuess}></input>
         <button type="submit">Guess</button>
       </form>
-      <button
+      <button className="hintButton"
         onClick={() => {
           navigate("/", { replace: true });
         }}
       >
         Cambiar Generación
+      </button> <button
+        onClick={() => {
+          hintCount(show);
+        }}
+      >
+        Hint
       </button>
     </div>
   );

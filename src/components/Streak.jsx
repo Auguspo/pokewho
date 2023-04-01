@@ -4,7 +4,7 @@ const Streak = ({value}) => {
    
     return (
         <div>
-            <h1>{value}</h1>
+            <h1>X {value}</h1>
         </div>
     );
 };

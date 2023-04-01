@@ -24,8 +24,8 @@ function Footer() {
           
         }}
       >
-        <a href="https://github.com/Auguspo" style={{ color: "white" }}>
-          Github de Augusto Poletti
+        <a className="github" href="https://github.com/Auguspo" style={{ color: "white" }}>
+      Github
         </a>
       </div>
     </div>

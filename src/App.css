@@ -1,24 +1,31 @@
+@font-face {
+  font-family: PokeFont;
+  src: url("./assets/PokemonGb-RAeo.ttf");
+}
+@font-face {
+  font-family: PokeSolid;
+  src: url("./assets/Pokemon Solid.ttf");
+}
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 25% 0 25%;
   padding: 2rem;
   text-align: center;
 }
-
-html{
+body {
   background-color: rgb(228, 0, 15);
+  justify-content: center;
 }
 .App {
   text-align: center;
   width: 100%;
- 
-
 }
 
 img {
   width: 315px;
   height: auto;
-  margin-right:10%;
+  margin: 10% 0 10% 0;
 }
 
 .img-dark {
@@ -29,7 +36,60 @@ img {
   filter: brightness(1);
 }
 
-.bg{ background: url("./assets/no_bg.png") no-repeat center center;   -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover; 
-   background-size:20%;}
+.checkbox {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 50%;
+  align-self: center;
+}
+
+label {
+  justify-content: left;
+  display: flex;
+  width: 70%;
+  margin: 0.2rem 0 0.2rem 0;
+  font-family: PokeFont;
+}
+
+button {
+  padding: 10rem 0 1rem 0;
+  margin: 2% 2% 2% 2%;
+}
+.hintButton{
+  margin:0 -1.5%;
+}
+
+a {
+  font-family: PokeFont;
+  color: white !important;
+}
+
+h1 {
+  font-family: PokeSolid;
+  color: #ffcc03;
+  text-shadow: 0 0 15px #356abc, 0 0 15px #356abc;
+  margin: 1% 10% 5% 10%;
+}
+
+.hintBox {
+  width: 315px;
+  height: 36px;
+  margin: 10% 0 10% 0;
+}
+
+.pokeName {
+  margin-top: -10%;
+}
+
+.imgbox {
+  width: 315px;
+  height: 315px;
+
+}
+
+.github{
+  font-size:medium;
+  font-family: Arial, Helvetica, sans-serif;
+}
+

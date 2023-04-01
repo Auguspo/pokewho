@@ -65,9 +65,11 @@ const CheckList = () => {
     event.preventDefault();
     let selectedGenerations = [];
     generations.forEach((generation) => {
-      if (generation.isChecked) {
+
+      if (generation.isChecked && generation.name !== "Select All") {
         selectedGenerations.push(generation.range);
       }
+    
     });
     console.log(selectedGenerations);
 
@@ -77,10 +79,10 @@ const CheckList = () => {
   return (
     <div>
       <h1>Selecciona La Generación Pokémon:</h1>
-      <form onSubmit={handleFormSubmit}>
+      <form className="checkboxForm" onSubmit={handleFormSubmit}>
         {generations.map((generation) => {
           return (
-            <div key={generation.id}>
+            <div className="checkbox" key={generation.id}>
               {generation.id !== 9 ? (
                 <label>
                   {" "}

@@ -6,7 +6,7 @@ const Pokeinfo = ({ pokemon, active }) => {
   
     return (
   
-      <div>
+      <div className="imgbox">
     
         {!active && (<div>
           <img
@@ -25,7 +25,7 @@ const Pokeinfo = ({ pokemon, active }) => {
             alt={pokemon.ID}
             draggable="false"
           /> 
-          <h2>{pokemon.name.toUpperCase().split('').join(' ')}</h2></div>
+          <h2 className="pokeName">{pokemon.name.toUpperCase().split('').join(' ')}</h2></div>
         )}
             
       </div>
