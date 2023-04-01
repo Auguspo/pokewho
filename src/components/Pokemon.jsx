@@ -109,8 +109,7 @@ function Pokemon({ min, max }) {
     if (count === 1) {
       setShow(2);
     }
-    console.log(generateRandomNumberInRange(gens));
-    console.log(gens);
+
   };
 
   return (
