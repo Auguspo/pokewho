@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import PokemonSelection from "./PokemonSelection";
 const CheckList = () => {
   const [generations, setGenerations] = useState([
@@ -13,10 +13,22 @@ const CheckList = () => {
     { id: 9, name: "Select All", isChecked: false },
   ]);
 
-  const [range, setRange] =useState()
-  
+  const [range, setRange] = useState();
 
+  useEffect(() => {
+    const FormSubmit = () => {
+      let selectedGenerations = [];
+      generations.forEach((generation) => {
+        if (generation.isChecked) {
+          selectedGenerations.push(generation.range);
+        }
+      });
 
+      setRange(selectedGenerations);
+    };
+
+    FormSubmit();
+  }, [generations]);
 
   const handleCheck = (event, id) => {
     const newGenerations = generations.map((generation) => {
@@ -35,20 +47,8 @@ const CheckList = () => {
       newGenerations.filter((generation) => generation.isChecked === true)
         .length === generations.length;
     }
-    
-     setGenerations(newGenerations);
-    
-     let selectedGenerations = [];
-     generations.forEach((generation) => {
-       if (generation.isChecked) {
-         selectedGenerations.push(generation.range);
-       }
-     });
-     console.log(selectedGenerations);
-      
- 
-     setRange(selectedGenerations);
 
+    setGenerations(newGenerations);
   };
 
   const handleSelectAll = (event) => {
@@ -59,7 +59,6 @@ const CheckList = () => {
       };
     });
     setGenerations(newGenerations);
-  
   };
 
   const handleFormSubmit = (event) => {
@@ -71,14 +70,13 @@ const CheckList = () => {
       }
     });
     console.log(selectedGenerations);
-     
 
     setRange(selectedGenerations);
   };
 
   return (
     <div>
-        <h1>Selecciona La Generación Pokémon:</h1>
+      <h1>Selecciona La Generación Pokémon:</h1>
       <form onSubmit={handleFormSubmit}>
         {generations.map((generation) => {
           return (
@@ -115,8 +113,6 @@ const CheckList = () => {
 
         <PokemonSelection type="submit" gens={range}></PokemonSelection>
       </form>
-
-
     </div>
   );
 };

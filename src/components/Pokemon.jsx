@@ -46,9 +46,9 @@ function Pokemon({ min, max }) {
         image: pokemonResponse.data.sprites.front_default,
         ID: pokemonResponse.data.ID,
       };
-      await setPokemon(pokemon);
+      setPokemon(pokemon);
       console.log(pokemon.name);
-      await setLoaded(true);
+      setLoaded(true);
     };
 
     if (!loaded) {
@@ -83,7 +83,7 @@ function Pokemon({ min, max }) {
 
   const submitGuess = async (e) => {
     e.preventDefault();
-    await setIsActive(true);
+    setIsActive(true);
     if (guess.toLowerCase() === pokemon.name.replace("-", " ")) {
       alert("Correcto");
 
@@ -96,7 +96,7 @@ function Pokemon({ min, max }) {
     setShow(0);
     await timeout(2000);
     setGuess("");
-    setCount(0);
+  
 
     handlePokemon();
   };
