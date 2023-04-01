@@ -13,6 +13,7 @@ const Pokeinfo = ({ pokemon, active }) => {
             className="img-dark"
             src={pokemon.image}
             alt={pokemon.ID}
+            draggable="false"
           />
           
           </div>
@@ -22,6 +23,7 @@ const Pokeinfo = ({ pokemon, active }) => {
             className="img-light"
             src={pokemon.image}
             alt={pokemon.ID}
+            draggable="false"
           /> 
           <h2>{pokemon.name.toUpperCase().split('').join(' ')}</h2></div>
         )}
