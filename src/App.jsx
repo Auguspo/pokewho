@@ -8,19 +8,15 @@ import CheckList from "./components/CheckList";
 
 function App() {
   return (
-    <div ><div className="App">
-
-    
-      <h1>PokeWho</h1>
+    <div className="text-center">
+      <h1 className="text-6xl">PokeWho</h1>
 
       <Router>
-      
         <Routes>
-      
           <Route exact path="/" element={<CheckList />} />
-          <Route path="/game" element={<Pokemon  />} />
+          <Route path="/game" element={<Pokemon />} />
         </Routes>
-      </Router></div>
+      </Router>
       <Footer />
     </div>
   );

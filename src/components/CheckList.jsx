@@ -77,16 +77,16 @@ const CheckList = () => {
   };
 
   return (
-    <div>
-      <h1>Selecciona La Generación Pokémon:</h1>
-      <form className="checkboxForm" onSubmit={handleFormSubmit}>
+    <div >
+      <h1 className="text-5xl my-6">Selecciona La Generación Pokémon:</h1>
+      <form className="checkboxForm m-8  content-center inline-block" onSubmit={handleFormSubmit}>
         {generations.map((generation) => {
           return (
-            <div className="checkbox" key={generation.id}>
+            <div className="checkbox  flex" key={generation.id}>
               {generation.id !== 9 ? (
-                <label>
+                <label className=" flex ">
                   {" "}
-                  <input
+                  <input className="mr-10 leading-tight "
                     type="checkbox"
                     checked={generation.isChecked}
                     onChange={(event) => handleCheck(event, generation.id)}
@@ -94,9 +94,9 @@ const CheckList = () => {
                   {generation.name}
                 </label>
               ) : (
-                <label>
+                <label className="flex">
                   {" "}
-                  <input
+                  <input className="mr-10 leading-tight"
                     type="checkbox"
                     checked={
                       generations.filter(
@@ -113,7 +113,7 @@ const CheckList = () => {
         })}
         <div></div>
 
-        <PokemonSelection type="submit" gens={range}></PokemonSelection>
+        <PokemonSelection  type="submit" gens={range}></PokemonSelection>
       </form>
     </div>
   );
