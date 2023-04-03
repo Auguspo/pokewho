@@ -23,8 +23,8 @@ const CheckList = () => {
           selectedGenerations.push(generation.range);
         }
       });
-
       setRange(selectedGenerations);
+      
     };
 
     FormSubmit();
@@ -71,10 +71,13 @@ const CheckList = () => {
       }
     
     });
-    console.log(selectedGenerations);
-
+    console.log("?");
+  
     setRange(selectedGenerations);
+   
   };
+
+  const noSelection = !generations.some((generation) => generation.isChecked);
 
   return (
     <div >
@@ -82,7 +85,7 @@ const CheckList = () => {
       <form className="checkboxForm m-8  content-center inline-block" onSubmit={handleFormSubmit}>
         {generations.map((generation) => {
           return (
-            <div className="checkbox  flex" key={generation.id}>
+            <div className="flex" key={generation.id}>
               {generation.id !== 9 ? (
                 <label className=" flex ">
                   {" "}
@@ -113,7 +116,11 @@ const CheckList = () => {
         })}
         <div></div>
 
-        <PokemonSelection  type="submit" gens={range}></PokemonSelection>
+        {noSelection ? (
+        <a className="bg-blue-500 flex justify-center hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded my-4 ">Please select<br />at least one</a>
+      ) : (
+        <PokemonSelection type="submit" gens={range}></PokemonSelection>
+      )}
       </form>
     </div>
   );
