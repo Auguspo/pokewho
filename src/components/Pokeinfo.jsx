@@ -6,7 +6,7 @@ const Pokeinfo = ({ pokemon, active }) => {
   
     return (
   
-      <div className="justify-center h-96">
+      <div className="justify-center h-96 ">
     
         {!active && (<div>
           <img
@@ -20,12 +20,12 @@ const Pokeinfo = ({ pokemon, active }) => {
         )}
         {active && (<div>
           <img
-            className="img-light w-full "
+            className=" w-full "
             src={pokemon.image}
             alt={pokemon.ID}
             draggable="false"
           /> 
-          <h2 className="text-2xl -mb-10 float">{pokemon.name.toUpperCase().split('').join(' ')}</h2></div>
+          <h2 className="text-2xl -mb-10 pb-5 float">{pokemon.name.toUpperCase().split('').join(' ')}</h2></div>
         )}
             
       </div>

@@ -9,7 +9,7 @@ import CheckList from "./components/CheckList";
 function App() {
   return (
     <div className="text-center">
-      <h1 className="text-6xl">PokeWho</h1>
+      <h1 className="text-3xl md:text-3xl lg:text-5xl xl:text-6xl">PokeWho</h1>
 
       <Router>
         <Routes>
@@ -17,7 +17,7 @@ function App() {
           <Route path="/game" element={<Pokemon />} />
         </Routes>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

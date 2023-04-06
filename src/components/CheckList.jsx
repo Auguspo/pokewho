@@ -81,13 +81,13 @@ const CheckList = () => {
 
   return (
     <div >
-      <h1 className="text-5xl my-6">Selecciona La Generación Pokémon:</h1>
-      <form className="checkboxForm m-8  content-center inline-block" onSubmit={handleFormSubmit}>
+      <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl my-6">Selecciona La Generación Pokémon:</h1>
+      <form className="checkboxForm m-5 text-sm  md:text-md lg:text-lg xl:text-xl  content-center inline-block" onSubmit={handleFormSubmit}>
         {generations.map((generation) => {
           return (
-            <div className="flex" key={generation.id}>
+            <div className="flex align-start" key={generation.id}>
               {generation.id !== 9 ? (
-                <label className=" flex ">
+                <label className="  flex">
                   {" "}
                   <input className="mr-10 leading-tight "
                     type="checkbox"
