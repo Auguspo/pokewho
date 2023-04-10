@@ -6,11 +6,11 @@ const Pokeinfo = ({ pokemon, active }) => {
 
   return (
 
-    <div className=" h-60 my-2 ">
+    <div className=" h-64 my-2 ">
 
       {!active && (<div className="justify-center mx-auto overflow-hidden flex flex-col items-center max-w-sm">
         <img
-          className="img-dark w-full sm:w-60 "
+          className="img-dark w-full sm:w-64 "
           src={pokemon.image}
           alt={pokemon.ID}
           draggable="false"
@@ -20,7 +20,7 @@ const Pokeinfo = ({ pokemon, active }) => {
       )}
       {active && (<div className="justify-center mx-auto overflow-hidden flex flex-col items-center max-w-sm">
         <img
-          className=" w-full  w-full sm:w-60  "
+          className=" w-full sm:w-64  "
           src={pokemon.image}
           alt={pokemon.ID}
           draggable="false"
