@@ -16,9 +16,6 @@ body {
   filter: brightness(0);
 }
 
-.img-light {
-  filter: brightness(1);
-}
 
 label {
   font-family: PokeFont;
