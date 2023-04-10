@@ -8,7 +8,7 @@ import CheckList from "./components/CheckList";
 
 function App() {
   return (
-    <div className="text-center h-screen py-10">
+    <div className="text-center h-screen py-5">
       <h1 className="text-4xl md:text-4xl lg:text-5xl xl:text-6xl">PokeWho</h1>
 
       <Router>
