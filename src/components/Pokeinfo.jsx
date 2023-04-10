@@ -3,33 +3,33 @@ import "../App.css";
 
 
 const Pokeinfo = ({ pokemon, active }) => {
-  
-    return (
-  
-      <div className="justify-center h-96 ">
-    
-        {!active && (<div>
-          <img
-            className="img-dark w-full"
-            src={pokemon.image}
-            alt={pokemon.ID}
-            draggable="false"
-          />
-          
-          </div>
-        )}
-        {active && (<div>
-          <img
-            className=" w-full "
-            src={pokemon.image}
-            alt={pokemon.ID}
-            draggable="false"
-          /> 
-          <h2 className="text-2xl -mb-10 pb-5 float">{pokemon.name.toUpperCase().split('').join(' ')}</h2></div>
-        )}
-            
+
+  return (
+
+    <div className=" h-52 lg:h-52 xl:h-80 ">
+
+      {!active && (<div>
+        <img
+          className="img-dark w-full  mb-10"
+          src={pokemon.image}
+          alt={pokemon.ID}
+          draggable="false"
+        />
+
       </div>
- 
+      )}
+      {active && (<div>
+        <img
+          className=" w-full  "
+          src={pokemon.image}
+          alt={pokemon.ID}
+          draggable="false"
+        />
+      </div>
+      )}
+
+    </div>
+
   );
 };
 
