@@ -18,7 +18,7 @@ const Pokeinfo = ({ pokemon, active }) => {
 
       </div>
       )}
-      {active && (<div>
+      {active && (<div className="justify-center bg-gray-100 mx-auto overflow-hidden shadow-md flex flex-col items-center max-w-sm">
         <img
           className=" w-full  w-full sm:w-60  "
           src={pokemon.image}
