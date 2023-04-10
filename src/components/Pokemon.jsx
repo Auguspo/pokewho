@@ -121,27 +121,28 @@ function Pokemon() {
       <form onSubmit={submitGuess}>
         <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-4" value={guess} onChange={handleGuess}></input>
 
-        <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 w-full rounded " type="submit">Guess</button>
+        <button className="pokefont text-sm bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 w-full rounded " type="submit">Guess</button>
         
         
       </form>
-<div className="w-full">
-      <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 w-48 md:w-80 hover:border-blue-500 rounded my-4 "
+<div className="w-full ">
+      <button className="pokefont text-sm  bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 w-48 md:w-80 hover:border-blue-500 rounded my-4 "
         onClick={() => {
           navigate("/", { replace: true });
         }}
       >
-        Cambiar Generación
+        Change Gens
       </button> 
 
-     <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 w-20 hover:border-blue-500 rounded ml-2"
+     <button className="pokefont  text-sm bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded ml-2"
         onClick={() => {
           hintCount(show);
         }}
       >
         Hint
       </button>
-    </div></div>
+    </div>
+    </div>
   );
 }
 
