@@ -20,7 +20,7 @@ const Pokeinfo = ({ pokemon, active }) => {
       )}
       {active && (<div>
         <img
-          className=" w-full  "
+          className=" w-full  w-full sm:w-60  "
           src={pokemon.image}
           alt={pokemon.ID}
           draggable="false"
